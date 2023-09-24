@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",					/* Workspace. */
+                "H:/Keil_v5/ARM/ARMCLANG/include/**"		/* Local MDK ARMCLANG directory. */
+            ],
+            "defines": [                                   /* A list of preprocessor definitions for the IntelliSense engine to use
+                                                            while parsing files.Optionally, use = to set a value, e.g. VERSION=1.*/
+                // "_DEBUG",
+                // "UNICODE",
+                // "_UNICODE",
+                "USE_DDL_DRIVER",							/* Use ddl drive library definition. */
+                "HC32F460",									/* MCU type definition. */
+                "__ARMCC_VERSION = 6190004"			        /* ARMCLANG version definition. (6.19004) */
+            ],
+            "browse": {
+                "path": [
+					"${workspaceFolder}",					/* Workspace. */
+                    "H:/Keil_v5/ARM/ARMCLANG/include"		/* Local MDK ARMCLANG directory. */
+                ]
+            },
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++20"
+        }
+    ],
+    "version": 4
+}

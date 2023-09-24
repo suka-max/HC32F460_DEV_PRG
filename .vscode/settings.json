@@ -1,0 +1,12 @@
+{
+    "files.encoding": "utf8",
+    "files.associations": {
+        "*.s": "arm",
+        "*.h": "c",
+        "*.C": "c",
+        "cstdint": "c",
+        "cstddef": "c",
+        "limits": "c",
+        "new": "c"
+    }
+}
