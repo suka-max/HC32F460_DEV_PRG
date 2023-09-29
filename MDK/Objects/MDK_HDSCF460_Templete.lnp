@@ -43,6 +43,8 @@
 ".\objects\hc32_ll_utility.o"
 ".\objects\hc32_ll_wdt.o"
 ".\objects\hc32f460_ll_interrupts_share.o"
+".\objects\oled.o"
+".\objects\spi.o"
 --strict --scatter ".\Objects\MDK_HDSCF460_Templete.sct"
 --keep=*Handler --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

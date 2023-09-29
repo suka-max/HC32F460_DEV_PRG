@@ -91,7 +91,7 @@ extern "C"
 #define LL_RTC_ENABLE                               (DDL_OFF)
 #define LL_SDIOC_ENABLE                             (DDL_OFF)
 #define LL_SMC_ENABLE                               (DDL_OFF)
-#define LL_SPI_ENABLE                               (DDL_OFF)
+#define LL_SPI_ENABLE                               (DDL_ON)
 #define LL_SRAM_ENABLE                              (DDL_ON)
 #define LL_SWDT_ENABLE                              (DDL_OFF)
 #define LL_TMR0_ENABLE                              (DDL_OFF)

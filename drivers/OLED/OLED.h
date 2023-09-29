@@ -1,25 +1,24 @@
 #ifndef _OLED_H
 #define _OLED_H
-#include "sys.h"
 #include "SPI.h"
 
-//#define SCL PBout(6) //´®ÐÐÊ±ÖÓ
-//#define SDA PBout(7) //´®ÐÐÊý¾Ý
+//#define SCL PBout(6) //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+//#define SDA PBout(7) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define	OLED_CMD	0
 #define	OLED_DATA	1
 #define	Brightness	0xCF 
 #define X_WIDTH 	128
 #define Y_WIDTH 	64
 //void OLED_GPIO_Init(void);
-//void IIC_Start(void);// -- ¿ªÆôI2C×ÜÏß
-//void IIC_Stop(void);// -- ¹Ø±ÕI2C×ÜÏß
-// Í¨¹ýI2C×ÜÏßÐ´Ò»¸öbyteµÄÊý¾Ývoid OLED_WrDat(unsigned char dat);// -- ÏòOLEDÆÁÐ´Êý¾Ý
-void OLED_Init(void);// -- OLEDÆÁ³õÊ¼»¯³ÌÐò£¬´Ëº¯ÊýÓ¦ÔÚ²Ù×÷ÆÁÄ»Ö®Ç°×îÏÈµ÷ÓÃ
-void OLED_Init_Ver(void);  //³õÊ¼»¯SSD1306
-void OLED_P6x8Str(unsigned char x,unsigned char y,unsigned char ch[]);// -- 6x8µãÕû£¬ÓÃÓÚÏÔÊ¾ASCIIÂëµÄ×îÐ¡ÕóÁÐ£¬²»Ì«ÇåÎú
-void OLED_P8x16Str(unsigned char x,unsigned char y,unsigned char ch[]);// -- 8x16µãÕû£¬ÓÃÓÚÏÔÊ¾ASCIIÂë£¬·Ç³£ÇåÎú
-void OLED_P16x16Ch(unsigned char x,unsigned char y,unsigned int N);// -- 16x16µãÕû£¬ÓÃÓÚÏÔÊ¾ºº×ÖµÄ×îÐ¡ÕóÁÐ£¬¿ÉÉèÖÃ¸÷ÖÖ×ÖÌå¡¢¼Ó´Ö¡¢ÇãÐ±¡¢ÏÂ»®ÏßµÈ
-void Draw_BMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char y1,unsigned char BMP[]);// -- ½«128x64ÏñËØµÄBMPÎ»Í¼ÔÚÈ¡×ÖÈí¼þÖÐËã³ö×Ö±í£¬È»ºó¸´ÖÆµ½codetabÖÐ£¬´Ëº¯Êýµ÷ÓÃ¼´¿É
+//void IIC_Start(void);// -- ï¿½ï¿½ï¿½ï¿½I2Cï¿½ï¿½ï¿½ï¿½
+//void IIC_Stop(void);// -- ï¿½Ø±ï¿½I2Cï¿½ï¿½ï¿½ï¿½
+// Í¨ï¿½ï¿½I2Cï¿½ï¿½ï¿½ï¿½Ð´Ò»ï¿½ï¿½byteï¿½ï¿½ï¿½ï¿½ï¿½ï¿½void OLED_WrDat(unsigned char dat);// -- ï¿½ï¿½OLEDï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½
+void OLED_Init(void);// -- OLEDï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ò£¬´Ëºï¿½ï¿½ï¿½Ó¦ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½Ä»Ö®Ç°ï¿½ï¿½ï¿½Èµï¿½ï¿½ï¿½
+void OLED_Init_Ver(void);  //ï¿½ï¿½Ê¼ï¿½ï¿½SSD1306
+void OLED_P6x8Str(unsigned char x,unsigned char y,unsigned char ch[]);// -- 6x8ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ASCIIï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½Ì«ï¿½ï¿½ï¿½ï¿½
+void OLED_P8x16Str(unsigned char x,unsigned char y,unsigned char ch[]);// -- 8x16ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ASCIIï¿½ë£¬ï¿½Ç³ï¿½ï¿½ï¿½ï¿½ï¿½
+void OLED_P16x16Ch(unsigned char x,unsigned char y,unsigned int N);// -- 16x16ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¡¢ï¿½Ó´Ö¡ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Â»ï¿½ï¿½ßµï¿½
+void Draw_BMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char y1,unsigned char BMP[]);// -- ï¿½ï¿½128x64ï¿½ï¿½ï¿½Øµï¿½BMPÎ»Í¼ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½Æµï¿½codetabï¿½Ð£ï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½
 void OLED_DrawBMP_Full(const unsigned char BMP[]);
 void OLED_DrawBMP_Full_Hor(const unsigned char BMP[]);
 void OLED_DrawBMP_Full_Ver(const unsigned char BMP[]);
@@ -36,6 +35,6 @@ void OLED_Init1(void) ;
 void OLED_Show_String(unsigned char x,unsigned char y,unsigned char *cha);
 void OLED_Show_4Bytes_Hex_SetPos(unsigned char posx,unsigned char posy,unsigned int num);
 
-
+void Oled_Fill_Page(unsigned char Page, unsigned char dat);
 
 #endif

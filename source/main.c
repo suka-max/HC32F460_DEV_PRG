@@ -1,12 +1,36 @@
 #include "hc32_ll.h"
+#include "OLED.h"
 
 #define LED_PORT	GPIO_PORT_B
 #define LED_PIN		GPIO_PIN_14
+
+
+
 
 static char *    digits       = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 const char CompileTimeStr[] __attribute__((section(".ARM.__at_0x2000"))) = __TIME__;
 const char CompileDateStr[] __attribute__((section(".ARM.__at_0x200A"))) = __DATE__;
+
+static void init_usart_port( void )
+{
+	stc_usart_uart_init_t stcUartInit;
+	
+	FCG_Fcg1PeriphClockCmd( FCG1_PERIPH_USART1, ENABLE );
+	
+	GPIO_SetFunc(GPIO_PORT_A, GPIO_PIN_10, GPIO_FUNC_32);
+  GPIO_SetFunc(GPIO_PORT_A, GPIO_PIN_11, GPIO_FUNC_33);
+	
+	USART_UART_StructInit(&stcUartInit);
+	stcUartInit.u32ClockDiv = USART_CLK_DIV4;
+  stcUartInit.u32Baudrate = 115200UL;
+  stcUartInit.u32OverSampleBit = USART_OVER_SAMPLE_8BIT;
+	USART_UART_Init(CM_USART1, &stcUartInit, NULL);
+	
+	USART_FuncCmd(CM_USART1, (USART_RX | USART_INT_RX | USART_TX), ENABLE);
+	
+}
+
 static void init_led_port( void )
 {
 	stc_gpio_init_t stcGpioInit;
@@ -14,8 +38,9 @@ static void init_led_port( void )
 	GPIO_StructInit( &stcGpioInit );
 	stcGpioInit.u16PinState = PIN_STAT_RST;
 	stcGpioInit.u16PinDir = PIN_DIR_OUT;
-  stcGpioInit.u16PinAttr = PIN_ATTR_DIGITAL;
+  	stcGpioInit.u16PinAttr = PIN_ATTR_DIGITAL;
 	GPIO_Init( LED_PORT, LED_PIN, &stcGpioInit );
+
 }
 /* TimerA-2-PWM2 PA1 */
 static void init_PWM_port( void )
@@ -42,7 +67,7 @@ static void init_PWM_port( void )
 	TMRA_Init(CM_TMRA_2, &stcTmraInit);
 
 	TMRA_PWM_StructInit(&stcPwmInit);
-    stcPwmInit.u32CompareValue = 500;
+  stcPwmInit.u32CompareValue = 500;
 	stcPwmInit.u16CompareMatchPolarity = TMRA_PWM_LOW;
 	stcPwmInit.u16PeriodMatchPolarity = TMRA_PWM_HIGH;
 	stcPwmInit.u16StopPolarity = TMRA_PWM_HIGH;
@@ -172,18 +197,23 @@ int main(void)
 	
 	init_led_port();
 	init_PWM_port();
-	usart_init();
-
+	My_SPI_Init();
+	OLED_Init();
+//	usart_init();
+	init_usart_port();
 	LL_PERIPH_WP( LL_PERIPH_ALL );	//Unlock FCG Register.
+	OLED_Fillscreen( 0xFF );
 	while(1)
 	{
 		// step_nonreverse();
-//		GPIO_TogglePins(GPIO_PORT_B,GPIO_PIN_14);
+		// GPIO_TogglePins(GPIO_PORT_H,GPIO_PIN_02);
+		USART_WriteData(CM_USART1,0x56);
 //		ee_printf("this is a demo %d %d\r", 22, 33 );
 //		usart_send_string( "This is a demo!\r\n" );
 //		usart_send_string(digits);
 //		usart_send_string("\r");
 		DDL_DelayMS(500);
+		Oled_Fill_Page( 0, 0x55 );
 	}
 	return 0;
 }

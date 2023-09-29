@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>HC32F460,USE_DDL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS\CORE\Include;..\drivers\hc32_ll_driver\inc;..\CMSIS\Device\HDSC\hc32f4xx\Include;..\source\inc;..\coremark</IncludePath>
+              <IncludePath>..\CMSIS\CORE\Include;..\drivers\hc32_ll_driver\inc;..\CMSIS\Device\HDSC\hc32f4xx\Include;..\source\inc;..\coremark;..\drivers\SPI;..\drivers\OLED</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -725,6 +725,21 @@
               <FileName>ee_printf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\coremark\ee_printf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>oled</GroupName>
+          <Files>
+            <File>
+              <FileName>OLED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drivers\OLED\OLED.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drivers\SPI\SPI.c</FilePath>
             </File>
           </Files>
         </Group>
