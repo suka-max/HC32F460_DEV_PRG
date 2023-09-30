@@ -19,12 +19,12 @@ static void init_usart_port( void )
 	FCG_Fcg1PeriphClockCmd( FCG1_PERIPH_USART1, ENABLE );
 	
 	GPIO_SetFunc(GPIO_PORT_A, GPIO_PIN_10, GPIO_FUNC_32);
-  GPIO_SetFunc(GPIO_PORT_A, GPIO_PIN_11, GPIO_FUNC_33);
+  	GPIO_SetFunc(GPIO_PORT_A, GPIO_PIN_11, GPIO_FUNC_33);
 	
 	USART_UART_StructInit(&stcUartInit);
 	stcUartInit.u32ClockDiv = USART_CLK_DIV4;
-  stcUartInit.u32Baudrate = 115200UL;
-  stcUartInit.u32OverSampleBit = USART_OVER_SAMPLE_8BIT;
+  	stcUartInit.u32Baudrate = 115200UL;
+  	stcUartInit.u32OverSampleBit = USART_OVER_SAMPLE_8BIT;
 	USART_UART_Init(CM_USART1, &stcUartInit, NULL);
 	
 	USART_FuncCmd(CM_USART1, (USART_RX | USART_INT_RX | USART_TX), ENABLE);
@@ -193,6 +193,7 @@ static void usart_send_string( char * pchar )
 }
 int main(void)
 {
+	unsigned char u8OledData = 0x0F;
 	LL_PERIPH_WE( LL_PERIPH_ALL );	//Unlock FCG Register.
 	
 	init_led_port();
@@ -207,13 +208,18 @@ int main(void)
 	{
 		// step_nonreverse();
 		// GPIO_TogglePins(GPIO_PORT_H,GPIO_PIN_02);
-		USART_WriteData(CM_USART1,0x56);
+		// USART_WriteData(CM_USART1,0x55);
 //		ee_printf("this is a demo %d %d\r", 22, 33 );
 //		usart_send_string( "This is a demo!\r\n" );
 //		usart_send_string(digits);
 //		usart_send_string("\r");
-		DDL_DelayMS(500);
-		Oled_Fill_Page( 0, 0x55 );
+		
+DDL_DelayMS(500);
+		// Oled_Fill_Page( 0, u8OledData );
+		OLED_Show_String(0,0,( char * )CompileDateStr);
+		OLED_Show_String(0,1,( char * )CompileTimeStr);
+
+		u8OledData = ~u8OledData;
 	}
 	return 0;
 }

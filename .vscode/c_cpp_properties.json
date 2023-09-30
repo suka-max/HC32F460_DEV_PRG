@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",					/* Workspace. */
-                "H:/Keil_v5/ARM/ARMCLANG/include/**"		/* Local MDK ARMCLANG directory. */
+                "C:/Keil_v5/ARM/ARMCLANG/include/**"		/* Local MDK ARMCLANG directory. */
             ],
             "defines": [                                   /* A list of preprocessor definitions for the IntelliSense engine to use
                                                             while parsing files.Optionally, use = to set a value, e.g. VERSION=1.*/
@@ -18,7 +18,7 @@
             "browse": {
                 "path": [
 					"${workspaceFolder}",					/* Workspace. */
-                    "H:/Keil_v5/ARM/ARMCLANG/include"		/* Local MDK ARMCLANG directory. */
+                    "C:/Keil_v5/ARM/ARMCLANG/include"		/* Local MDK ARMCLANG directory. */
                 ]
             },
             "cStandard": "gnu17",

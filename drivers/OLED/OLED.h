@@ -32,7 +32,7 @@ void OLED_DrawBMP_FPS_Hor_Start(void);
 void OLED_Fill_Screen(unsigned char dat);
 void OLED_Hor_mode_Start(void);
 void OLED_Init1(void) ;
-void OLED_Show_String(unsigned char x,unsigned char y,unsigned char *cha);
+void OLED_Show_String(unsigned char x,unsigned char y,char *cha);
 void OLED_Show_4Bytes_Hex_SetPos(unsigned char posx,unsigned char posy,unsigned int num);
 
 void Oled_Fill_Page(unsigned char Page, unsigned char dat);

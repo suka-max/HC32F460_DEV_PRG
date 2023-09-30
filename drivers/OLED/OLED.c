@@ -1,7 +1,7 @@
 #include "OLED.h"
 #include "font.h"
 
-void OLED_Init(void)  //初�?�化SSD1306
+void OLED_Init( void )  //初始化SSD1306
 {  	 
 	Set_SPI_RST;
 	DDL_DelayMS(100);
@@ -40,7 +40,7 @@ void OLED_Init(void)  //初�?�化SSD1306
 	OLED_SPI_Write_Command(0xa6);
 
 
-	OLED_SPI_Write_Command(0xaf);
+	OLED_SPI_Write_Command(0xaf);   //开启显示
 } 
 
 
@@ -122,16 +122,20 @@ void OLED_Fillscreen(unsigned char dat)
 
 void Oled_Fill_Page(unsigned char Page, unsigned char dat)
 {
-	
 	unsigned char x;
-	Page = Page % 8;
 
-	OLED_SPI_Write_Command(0xb0+Page);
-	OLED_SPI_Write_Command(0x10);
-	OLED_SPI_Write_Command(0x00);
-	for(x=0;x<128;x++)
+	if ( Page > 7 )
 	{
-		OLED_SPI_Write_Data(dat);
+		Page = Page % 8;
+	}
+
+	OLED_SPI_Write_Command( 0xb0 + Page );
+	OLED_SPI_Write_Command( 0x10 );
+	OLED_SPI_Write_Command( 0x00 );
+
+	for( x = 0; x < 128; x++ )
+	{
+		OLED_SPI_Write_Data( dat );
 	}
 }
 
@@ -192,11 +196,15 @@ void OLED_DrawBMP_FPS_Hor(unsigned int fps,const unsigned char BMP[])
 		}
 }
 
-void OLED_Show_String(unsigned char x,unsigned char y,unsigned char *cha)
+void OLED_Show_String(unsigned char x,unsigned char y,char *cha)
 {
 	unsigned char j= 0;
 	unsigned char i;
 	const unsigned char *p;
+	if ( x > 127 || y > 7 )
+	{
+		return;
+	}
 	OLED_SPI_Write_Command(0xb0+y);
 	OLED_SPI_Write_Command(0x10+(x >> 4));
 	OLED_SPI_Write_Command(0x00+x&0x0f);
